@@ -1,11 +1,25 @@
 const express = require("express");
 const app = express();
+const path = require("path");
+
+app.set("views", path.join(__dirname, "views"));
+app.set("view engine", "ejs");
+app.use(express.static("public"));
 
 app.get("/", (req, res, next) => {
 	const blog = { id: 1, title: "Blog title", description: "Blog description" };
-	res.status(200).json(blog);
+	res.render("index");
 });
 
-app.listen(3000, () => {
-	console.info("Sunucu 3000 portunda başlatıldı ...");
+app.get("/about", (req, res, next) => {
+	const blog = { id: 1, title: "Blog title", description: "Blog description" };
+	res.render("about");
+});
+app.get("/add_post", (req, res, next) => {
+	const blog = { id: 1, title: "Blog title", description: "Blog description" };
+	res.render("add_post");
+});
+
+app.listen(5000, () => {
+	console.info("Sunucu 5000 portunda başlatıldı ...");
 });
