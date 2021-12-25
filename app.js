@@ -29,6 +29,11 @@ app.post("/add_post", async (req, res, next) => {
 	res.redirect("/");
 });
 
+app.get("/post/:postId", async (req, res, next) => {
+	let post = await Post.findById(req.params.postId);
+	res.render("post", { post });
+});
+
 mongoose.connect("mongodb://localhost:27017/cleanblog-test-db").then(() => {
 	app.listen(5000, () => {
 		console.info("Sunucu 5000 portunda başlatıldı ...");
