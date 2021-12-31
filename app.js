@@ -3,6 +3,7 @@ const app = express();
 const path = require("path");
 const mongoose = require("mongoose");
 const methodOverride = require("method-override");
+require("dotenv").config();
 
 const postController = require("./controllers/postController");
 const pageController = require("./controllers/pageController");
@@ -28,7 +29,7 @@ app.get("/post/:postId", postController.getPostById);
 app.put("/post/:postId", postController.updatePost);
 app.delete("/post/:postId", postController.deletePost);
 
-mongoose.connect(process.argv[MONGO_URI]).then(() => {
+mongoose.connect(process.env["MONGO_URI"]).then(() => {
 	app.listen(5000, () => {
 		console.info("Sunucu 5000 portunda başlatıldı ...");
 	});
