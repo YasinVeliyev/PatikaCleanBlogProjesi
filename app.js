@@ -28,7 +28,7 @@ app.get("/post/:postId", postController.getPostById);
 app.put("/post/:postId", postController.updatePost);
 app.delete("/post/:postId", postController.deletePost);
 
-mongoose.connect("mongodb://localhost:27017/cleanblog-test-db").then(() => {
+mongoose.connect(process.argv[MONGO_URI]).then(() => {
 	app.listen(5000, () => {
 		console.info("Sunucu 5000 portunda başlatıldı ...");
 	});
